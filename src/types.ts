@@ -25,7 +25,8 @@ export type GitAnalysis = {
 export type Screenshot = {
   name: string;
   path: string;
-  image: string; // base64
+  image?: string; // base64 (optional for backward compatibility)
+  githubUrl?: string; // GitHub hosted image URL
   placement: string;
 };
 

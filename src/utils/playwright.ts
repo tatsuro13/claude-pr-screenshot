@@ -1,5 +1,6 @@
 import { chromium } from 'playwright';
 import type { Config, Screenshot } from '../types.js';
+import { uploadImageToGitHub } from './github.js';
 
 export const captureScreenshots = async (config: Config, baseUrl: string): Promise<Screenshot[]> => {
   const browser = await chromium.launch();
@@ -15,15 +16,19 @@ export const captureScreenshots = async (config: Config, baseUrl: string): Promi
     try {
       await page.goto(url, { waitUntil: 'networkidle' });
       
-      const screenshot = await page.screenshot({ 
+      const screenshot = await page.screenshot({
         fullPage: true,
         type: 'png'
       });
 
+      // GitHubにスクリーンショットをアップロード
+      const filename = `${path.replace('/', '') || 'home'}.png`;
+      const githubUrl = await uploadImageToGitHub(config, screenshot, filename);
+
       screenshots.push({
         name: path === '/' ? 'Homepage' : path.replace('/', ''),
         path,
-        image: screenshot.toString('base64'),
+        githubUrl,
         placement: `SCREENSHOT_${path.replace('/', '').toUpperCase() || 'HOME'}`
       });
 
@@ -57,10 +62,14 @@ export const captureElementScreenshot = async (
 
     const screenshot = await element.screenshot({ type: 'png' });
 
+    // GitHubにスクリーンショットをアップロード
+    const filename = `element-${selector.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
+    const githubUrl = await uploadImageToGitHub(config, screenshot, filename);
+
     return {
       name: `Element: ${selector}`,
       path: baseUrl,
-      image: screenshot.toString('base64'),
+      githubUrl,
       placement: `SCREENSHOT_ELEMENT_${selector.replace(/[^a-zA-Z0-9]/g, '_').toUpperCase()}`
     };
 

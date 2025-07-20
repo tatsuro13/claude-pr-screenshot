@@ -57,9 +57,10 @@ const generateScreenshotSection = (screenshots: Screenshot[]): string => {
   }
 
   const screenshotMarkdown = screenshots
-    .map((screenshot: Screenshot) => 
-      `### ${screenshot.name}\n![${screenshot.name}](data:image/png;base64,${screenshot.image})`
-    )
+    .map((screenshot: Screenshot) => {
+      const imageUrl = screenshot.githubUrl || `data:image/png;base64,${screenshot.image}`;
+      return `### ${screenshot.name}\n![${screenshot.name}](${imageUrl})`;
+    })
     .join('\n\n');
 
   return `## 🖼️ スクリーンショット\n\n${screenshotMarkdown}`;
@@ -94,7 +95,8 @@ export const insertScreenshotsIntoTemplate = (
 
   screenshots.forEach((screenshot: Screenshot) => {
     const placeholder = `{{${screenshot.placement}}}`;
-    const imageMarkdown = `![${screenshot.name}](data:image/png;base64,${screenshot.image})`;
+    const imageUrl = screenshot.githubUrl || `data:image/png;base64,${screenshot.image}`;
+    const imageMarkdown = `![${screenshot.name}](${imageUrl})`;
     result = result.replace(placeholder, imageMarkdown);
   });
 
