@@ -1,6 +1,6 @@
 {
   "name": "claude-pr-screenshot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automated PR creation with screenshots for Claude Code",
   "type": "module",
   "bin": {
