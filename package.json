@@ -23,8 +23,21 @@
     "playwright",
     "github"
   ],
-  "author": "",
+  "author": "tatsuro13",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tatsuro13/claude-pr-screenshot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tatsuro13/claude-pr-screenshot/issues"
+  },
+  "homepage": "https://github.com/tatsuro13/claude-pr-screenshot#readme",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "commander": "^11.0.0",
     "@octokit/rest": "^19.0.0",
