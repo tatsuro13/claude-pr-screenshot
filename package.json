@@ -1,0 +1,41 @@
+{
+  "name": "claude-pr-screenshot",
+  "version": "1.0.0",
+  "description": "Automated PR creation with screenshots for Claude Code",
+  "type": "module",
+  "bin": {
+    "claude-pr-screenshot": "./dist/bin/cli.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "claude-code",
+    "pr",
+    "screenshot",
+    "automation",
+    "playwright",
+    "github"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "@octokit/rest": "^19.0.0",
+    "playwright": "^1.40.0",
+    "inquirer": "^9.0.0",
+    "simple-git": "^3.20.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/inquirer": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
