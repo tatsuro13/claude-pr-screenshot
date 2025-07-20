@@ -1,8 +1,11 @@
 # Claude PR Screenshot
 
-Automated PR creation with screenshots for Claude Code using Playwright MCP integration.
+Automated PR creation with screenshots for Claude Code using Playwright.
 
-Claude CodeとPlaywright MCPを使用して、PRに自動的にスクリーンショット付きコメントを生成するツールです。
+Claude CodeとPlaywrightを使用して、PRに自動的にスクリーンショット付きコメントを生成するツールです。
+
+**Note**: This tool operates as an independent CLI application and does not require Playwright MCP integration.
+**注意**: このツールはPlaywright MCPに依存せず、Claude Codeから独立したCLIアプリケーションとして動作します。
 
 ## Features / 特徴
 
