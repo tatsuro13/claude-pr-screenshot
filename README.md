@@ -10,10 +10,11 @@ Claude CodeとPlaywrightを使用して、PRに自動的にスクリーンショ
 ## Features / 特徴
 
 - 🚀 **Automated PR Creation** / **自動PR作成**: Complete automation from branch analysis to PR creation / ブランチ分析からPR作成まで完全自動化
-- 📸 **Automatic Screenshots** / **スクリーンショット自動撮影**: Multi-page capture with Playwright / Playwrightで複数ページを自動キャプチャ
+- 📸 **GitHub-Hosted Screenshots** / **GitHub添付スクリーンショット**: Direct image upload to GitHub repository for unlimited size / GitHubリポジトリに直接アップロードでサイズ制限なし
 - 📝 **Smart Comment Generation** / **コメント自動生成**: Generate appropriate PR comments from Git diff analysis / Git差分から適切なPRコメントを生成
 - 🎯 **Claude Code Integration** / **Claude Code統合**: Easy execution with custom slash commands / カスタムスラッシュコマンドで簡単実行
 - ⚡ **TypeScript** / **TypeScript**: Complete type safety with modern code / 完全な型安全性とモダンなコード
+- 🔧 **No Size Limits** / **サイズ制限なし**: Overcome GitHub comment size limitations with direct image hosting / 直接画像ホスティングでGitHubコメントサイズ制限を回避
 
 ## Installation / インストール
 
@@ -118,10 +119,10 @@ npx claude-pr-screenshot preview feature/new-feature
 ## 🖼️ Screenshots / スクリーンショット
 
 ### Homepage
-![Homepage](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...)
+![Homepage](https://raw.githubusercontent.com/your-username/your-repo/main/screenshots/1234567890-home.png)
 
 ### About Page
-![About](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...)
+![About](https://raw.githubusercontent.com/your-username/your-repo/main/screenshots/1234567890-about.png)
 
 ## ✅ Test Items / テスト項目
 - [ ] Functional verification / 機能動作確認
@@ -168,6 +169,26 @@ npm test
 npm run test:watch    # Watch mode / ウォッチモード
 npm run test:coverage # With coverage / カバレッジ付き
 ```
+
+## GitHub Image Hosting / GitHub画像ホスティング
+
+This tool uses GitHub's repository file hosting to store screenshots, which provides several advantages:
+
+このツールはGitHubのリポジトリファイルホスティングを使用してスクリーンショットを保存し、以下の利点があります：
+
+### Benefits / 利点
+
+- **No Size Limits** / **サイズ制限なし**: Overcome GitHub comment 65,536 character limit / GitHubコメントの65,536文字制限を回避
+- **Permanent Storage** / **永続保存**: Images are stored permanently in your repository / 画像はリポジトリに永続的に保存
+- **Fast Loading** / **高速読み込み**: Images load faster than Base64 embedded data / Base64埋め込みデータより高速読み込み
+- **Version Control** / **バージョン管理**: Screenshots are version controlled with your code / スクリーンショットもコードと一緒にバージョン管理
+
+### How it works / 動作原理
+
+1. Screenshots are captured using Playwright / Playwrightでスクリーンショットを撮影
+2. Images are uploaded to `screenshots/` directory in your repository / 画像はリポジトリの`screenshots/`ディレクトリにアップロード
+3. PR comments reference the GitHub raw URLs / PRコメントはGitHubのrawURLを参照
+4. Images display properly without size limitations / サイズ制限なしで画像が正常表示
 
 ## Troubleshooting / トラブルシューティング
 
