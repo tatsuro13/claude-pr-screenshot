@@ -141,3 +141,36 @@ export const getRepositoryInfo = async (config: Config) => {
     throw new Error(`リポジトリ情報取得エラー: ${error.message}`);
   }
 };
+
+export const uploadImageToGitHub = async (
+  config: Config,
+  imageBuffer: Buffer,
+  filename: string
+): Promise<string> => {
+  const octokit = new Octokit({
+    auth: config.github.token,
+  });
+
+  try {
+    const timestamp = Date.now();
+    const path = `screenshots/${timestamp}-${filename}`;
+    
+    // GitHub リポジトリに画像ファイルを作成
+    const response = await octokit.rest.repos.createOrUpdateFileContents({
+      owner: config.github.owner,
+      repo: config.github.repo,
+      path,
+      message: `Add screenshot: ${filename}`,
+      content: imageBuffer.toString('base64'),
+    });
+
+    // 画像のraw URLを返す
+    const rawUrl = `https://raw.githubusercontent.com/${config.github.owner}/${config.github.repo}/main/${path}`;
+    console.log(`📸 スクリーンショットをアップロード: ${rawUrl}`);
+    
+    return rawUrl;
+  } catch (error: any) {
+    console.warn(`⚠️ 画像アップロードエラー: ${error.message}`);
+    throw new Error(`画像アップロードエラー: ${error.message}`);
+  }
+};
