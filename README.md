@@ -1,79 +1,81 @@
 # Claude PR Screenshot
 
+Automated PR creation with screenshots for Claude Code using Playwright MCP integration.
+
 Claude CodeとPlaywright MCPを使用して、PRに自動的にスクリーンショット付きコメントを生成するツールです。
 
-## 特徴
+## Features / 特徴
 
-- 🚀 **自動PR作成**: ブランチ分析からPR作成まで完全自動化
-- 📸 **スクリーンショット自動撮影**: Playwrightで複数ページを自動キャプチャ
-- 📝 **コメント自動生成**: Git差分から適切なPRコメントを生成
-- 🎯 **Claude Code統合**: カスタムスラッシュコマンドで簡単実行
-- ⚡ **TypeScript**: 完全な型安全性とモダンなコード
+- 🚀 **Automated PR Creation** / **自動PR作成**: Complete automation from branch analysis to PR creation / ブランチ分析からPR作成まで完全自動化
+- 📸 **Automatic Screenshots** / **スクリーンショット自動撮影**: Multi-page capture with Playwright / Playwrightで複数ページを自動キャプチャ
+- 📝 **Smart Comment Generation** / **コメント自動生成**: Generate appropriate PR comments from Git diff analysis / Git差分から適切なPRコメントを生成
+- 🎯 **Claude Code Integration** / **Claude Code統合**: Easy execution with custom slash commands / カスタムスラッシュコマンドで簡単実行
+- ⚡ **TypeScript** / **TypeScript**: Complete type safety with modern code / 完全な型安全性とモダンなコード
 
-## インストール
+## Installation / インストール
 
 ```bash
-# グローバルインストール
+# Global installation / グローバルインストール
 npm install -g claude-pr-screenshot
 
-# またはプロジェクト単位
+# Or project-specific / またはプロジェクト単位
 npm install --save-dev claude-pr-screenshot
 ```
 
-## セットアップ
+## Setup / セットアップ
 
-### 1. GitHub Personal Access Token の取得
+### 1. Get GitHub Personal Access Token / GitHub Personal Access Token の取得
 
-1. [GitHub Settings > Personal access tokens](https://github.com/settings/tokens) にアクセス
-2. "Generate new token (classic)" をクリック
-3. 必要な権限を選択:
-   - `repo` (プライベートリポジトリの場合)
-   - `public_repo` (パブリックリポジトリの場合)
-   - `workflow` (GitHub Actionsを使用する場合)
+1. Go to [GitHub Settings > Personal access tokens](https://github.com/settings/tokens) / [GitHub Settings > Personal access tokens](https://github.com/settings/tokens) にアクセス
+2. Click "Generate new token (classic)" / "Generate new token (classic)" をクリック
+3. Select required permissions / 必要な権限を選択:
+   - `repo` (for private repositories / プライベートリポジトリの場合)
+   - `public_repo` (for public repositories / パブリックリポジトリの場合)
+   - `workflow` (if using GitHub Actions / GitHub Actionsを使用する場合)
 
-### 2. 初期設定
+### 2. Initialize Configuration / 初期設定
 
 ```bash
 npx claude-pr-screenshot init
 ```
 
-対話式で以下の設定を行います:
+Interactive setup for / 対話式で以下の設定を行います:
 - GitHub Personal Access Token
 - GitHub Owner/Repository
-- 開発サーバーURL
-- スクリーンショット対象パス
+- Development server URL / 開発サーバーURL
+- Screenshot target paths / スクリーンショット対象パス
 
-## 使用方法
+## Usage / 使用方法
 
-### コマンドライン
+### Command Line / コマンドライン
 
 ```bash
-# 基本的な使用方法
+# Basic usage / 基本的な使用方法
 npx claude-pr-screenshot create-pr feature/new-feature
 
-# ベースブランチを指定
+# Specify base branch / ベースブランチを指定
 npx claude-pr-screenshot create-pr feature/new-feature --base develop
 
-# 開発サーバーURLを指定
+# Specify development server URL / 開発サーバーURLを指定
 npx claude-pr-screenshot create-pr feature/new-feature --url http://localhost:8080
 
-# プレビュー（PR作成せずにコメントを確認）
+# Preview without creating PR / PR作成せずにプレビュー
 npx claude-pr-screenshot preview feature/new-feature
 ```
 
-### Claude Code内での使用
+### Claude Code Integration / Claude Code内での使用
 
 ```bash
-# カスタムスラッシュコマンド
+# Custom slash command / カスタムスラッシュコマンド
 /pr-ready feature/new-feature
 
-# オプション付き
+# With options / オプション付き
 /pr-ready feature/new-feature --base develop --url http://localhost:8080
 ```
 
-## 設定ファイル
+## Configuration File / 設定ファイル
 
-`.claude-pr-config.json` が自動生成されます:
+`.claude-pr-config.json` is automatically generated / `.claude-pr-config.json` が自動生成されます:
 
 ```json
 {
@@ -96,21 +98,21 @@ npx claude-pr-screenshot preview feature/new-feature
 }
 ```
 
-## 生成されるPRコメント例
+## Generated PR Comment Example / 生成されるPRコメント例
 
 ```markdown
-## 🚀 変更概要
+## 🚀 Changes Overview / 変更概要
 
-### 📋 実装内容
+### 📋 Implementation Details / 実装内容
 - Add user authentication feature
 - Update navigation component
 - Fix responsive design issues
 
-### 📁 ファイル変更
-**追加**: src/auth/login.ts, src/components/Nav.vue
-**変更**: src/App.vue, src/styles/main.css
+### 📁 File Changes / ファイル変更
+**Added / 追加**: src/auth/login.ts, src/components/Nav.vue
+**Modified / 変更**: src/App.vue, src/styles/main.css
 
-## 🖼️ スクリーンショット
+## 🖼️ Screenshots / スクリーンショット
 
 ### Homepage
 ![Homepage](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...)
@@ -118,73 +120,85 @@ npx claude-pr-screenshot preview feature/new-feature
 ### About Page
 ![About](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...)
 
-## ✅ テスト項目
-- [ ] 機能動作確認
-- [ ] レスポンシブ確認
-- [ ] 既存機能への影響なし
+## ✅ Test Items / テスト項目
+- [ ] Functional verification / 機能動作確認
+- [ ] Responsive design check / レスポンシブ確認
+- [ ] No impact on existing features / 既存機能への影響なし
 ```
 
-## コマンド一覧
+## Commands / コマンド一覧
 
-| コマンド | 説明 |
-|----------|------|
-| `init` | 初期設定を行う |
-| `create-pr <branch>` | PRを作成する |
-| `preview <branch>` | PRコメントをプレビューする |
-| `config` | 現在の設定を表示する |
-| `setup` | セットアップ手順を表示する |
+| Command / コマンド | Description / 説明 |
+|-------------------|-------------------|
+| `init` | Initialize configuration / 初期設定を行う |
+| `create-pr <branch>` | Create PR / PRを作成する |
+| `preview <branch>` | Preview PR comment / PRコメントをプレビューする |
+| `config` | Show current configuration / 現在の設定を表示する |
+| `setup` | Show setup instructions / セットアップ手順を表示する |
 
-## オプション
+## Options / オプション
 
-| オプション | 短縮形 | 説明 | デフォルト |
-|------------|--------|------|------------|
-| `--base` | `-b` | ベースブランチ | `main` |
-| `--url` | `-u` | 開発サーバーURL | 設定ファイルの値 |
-| `--draft` | - | ドラフトPRとして作成 | `false` |
+| Option / オプション | Short / 短縮形 | Description / 説明 | Default / デフォルト |
+|-------------------|---------------|-------------------|---------------------|
+| `--base` | `-b` | Base branch / ベースブランチ | `main` |
+| `--url` | `-u` | Development server URL / 開発サーバーURL | Config file value / 設定ファイルの値 |
+| `--draft` | - | Create as draft PR / ドラフトPRとして作成 | `false` |
 
-## トラブルシューティング
-
-### よくある問題
-
-**Q: "設定ファイルが見つかりません" エラー**
-```bash
-# 初期設定を実行してください
-npx claude-pr-screenshot init
-```
-
-**Q: GitHub API エラー**
-- Personal Access Tokenの権限を確認
-- トークンの有効期限を確認
-- リポジトリ名・オーナー名を確認
-
-**Q: スクリーンショット撮影失敗**
-- 開発サーバーが起動しているか確認
-- URLが正しいか確認
-- ネットワーク接続を確認
-
-**Q: TypeScriptエラー**
-```bash
-# 型定義をインストール
-npm install --save-dev @types/node
-```
-
-## 開発
+## Development / 開発
 
 ```bash
-# リポジトリをクローン
+# Clone repository / リポジトリをクローン
 git clone https://github.com/your-username/claude-pr-screenshot.git
 cd claude-pr-screenshot
 
-# 依存関係をインストール
+# Install dependencies / 依存関係をインストール
 npm install
 
-# ビルド
+# Build / ビルド
 npm run build
 
-# 開発モード
+# Development mode / 開発モード
 npm run dev
+
+# Run tests / テスト実行
+npm test
+npm run test:watch    # Watch mode / ウォッチモード
+npm run test:coverage # With coverage / カバレッジ付き
 ```
 
-## ライセンス
+## Troubleshooting / トラブルシューティング
+
+### Common Issues / よくある問題
+
+**Q: "Configuration file not found" error / "設定ファイルが見つかりません" エラー**
+```bash
+# Run initial setup / 初期設定を実行してください
+npx claude-pr-screenshot init
+```
+
+**Q: GitHub API Error / GitHub API エラー**
+- Check Personal Access Token permissions / Personal Access Tokenの権限を確認
+- Verify token expiration / トークンの有効期限を確認
+- Confirm repository name and owner / リポジトリ名・オーナー名を確認
+
+**Q: Screenshot capture failure / スクリーンショット撮影失敗**
+- Ensure development server is running / 開発サーバーが起動しているか確認
+- Verify URL is correct / URLが正しいか確認
+- Check network connection / ネットワーク接続を確認
+
+**Q: TypeScript errors / TypeScriptエラー**
+```bash
+# Install type definitions / 型定義をインストール
+npm install --save-dev @types/node
+```
+
+## Requirements / 要件
+
+- Node.js >= 18.0.0
+- Git repository / Gitリポジトリ
+- GitHub repository / GitHubリポジトリ
+- Development server (for screenshots) / 開発サーバー（スクリーンショット用）
+
+## License / ライセンス
 
 MIT License

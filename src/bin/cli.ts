@@ -96,11 +96,17 @@ program
   });
 
 // エラーハンドリング
-program.exitOverride();
+program.exitOverride((err) => {
+  if (err.code === 'commander.help' || err.code === 'commander.version') {
+    console.log(err.message);
+    process.exit(err.exitCode);
+  }
+  throw err;
+});
 
 program.parse();
 
 // 引数なしで実行された場合のヘルプ表示
-if (!program.args.length) {
+if (process.argv.length <= 2) {
   program.help();
 }
